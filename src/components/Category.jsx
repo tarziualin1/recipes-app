@@ -71,6 +71,14 @@ const SLink = styled(NavLink)`
       font-size: 1.5rem;
     }
   }
+
+  @media (max-width: 600px) {
+    /* Apply styles for screens 768px and below */
+    margin: 5px;
+    padding: 5px;
+    width: 4.5rem;
+    height: 4.5rem;
+  }
 `;
 
 export default Category;

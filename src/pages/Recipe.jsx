@@ -84,6 +84,23 @@ const DetailWrapper = styled.div`
   ul {
     margin-top: 2rem;
   }
+
+  img {
+    border-radius: 2rem;
+    @media (max-width: 768px) {
+      /* Apply styles for screens 768px and below */
+      height: auto;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    /* Apply styles for screens 768px and below */
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0rem;
+  }
 `;
 
 const Button = styled.button`
@@ -97,6 +114,11 @@ const Button = styled.button`
 
 const Info = styled.div`
   margin-left: 5rem;
+  @media (max-width: 1000px) {
+    /* Apply styles for screens 1000px and below */
+
+    margin: 2rem 0rem;
+  }
 `;
 
 export default Recipe;

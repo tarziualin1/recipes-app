@@ -7,6 +7,7 @@ import "@splidejs/react-splide/css";
 
 const Popular = () => {
   const [popular, setPopular] = useState([]);
+  const [perPage, setPerPage] = useState(3);
 
   const getPopular = async () => {
     const localStorageKey = "popular";
@@ -27,15 +28,23 @@ const Popular = () => {
   useEffect(() => {
     getPopular();
 
-    // Set the timeout to delete after a certain amount of time (in milliseconds)
-    const deleteAfterMillis = 600000; // 1 minute
-    const timeoutId = setTimeout(() => {
-      // Delete the value from local storage
-      localStorage.removeItem("popular");
-    }, deleteAfterMillis);
+    const updateOptions = () => {
+      const screenWidth = window.innerWidth;
 
-    // Clear the timeout when the component unmounts
-    return () => clearTimeout(timeoutId);
+      // Calculate the perPage value based on screen width
+      setPerPage(screenWidth < 600 ? 1 : screenWidth < 900 ? 2 : 3);
+    };
+
+    // Attach the event listener to the window resize event
+    window.addEventListener("resize", updateOptions);
+
+    // Initial setup
+    updateOptions();
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateOptions);
+    };
   }, []);
 
   return (
@@ -43,8 +52,8 @@ const Popular = () => {
       <h3>Popular Picks</h3>
       <Splide
         options={{
-          perPage: 4,
-          arrows: false,
+          perPage: perPage,
+          arrows: true,
           pagination: false,
           drag: "free",
           gap: "3rem",

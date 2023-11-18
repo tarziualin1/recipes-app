@@ -34,3 +34,10 @@ h3 {
 a {
   color: rgb(56, 56, 56);
 }
+
+@media (max-width: 1400px) {
+  /* Apply styles for screens 768px and below */
+  body {
+    margin: 0% 5%;
+  }
+}
